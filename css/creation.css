@@ -1,0 +1,14 @@
+.forms{
+    border: solid gray 1px;  
+    width:25%;  
+    border-radius: 2px;  
+    margin: 120px auto;  
+    background: white;  
+    padding: 50px; 
+    text-align: center; 
+    background-color: #8F4B4F;
+}
+#contenu{
+    height:300px;
+    width:400px;
+}

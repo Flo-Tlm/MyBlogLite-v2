@@ -1,0 +1,68 @@
+.html {
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+}
+.liste_post {
+  position: relative;
+  font-family: "Share Tech", sans-serif;
+  padding: 10px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+  min-width: 300px;
+}
+
+.postlist {
+  padding: 10px;
+  text-align: center;
+}
+.postlist li {
+  opacity: 90%;
+  list-style: none;
+  margin-left: -30px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  background: #8f4b4f;
+  backdrop-filter: blur(10px);
+}
+
+.postlist img {
+  padding: 20px;
+  margin-left: -20px;
+}
+
+.postlist h1 {
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+.postlist h2 {
+  margin-left: 50px;
+  color: rgb(255, 255, 255);
+  margin-left: -10px;
+}
+
+.postlist p {
+  text-align: center;
+  color: #fff;
+}
+
+.postlist a {
+  color: rgba(74, 224, 149, 0.564);
+  padding: 10px;
+}
+
+.postlist a:nth-child(3) {
+  color: rgba(25, 182, 234, 0.785);
+  padding: 10px;
+}
+
+.postlist a:nth-child(4) {
+  color: rgba(255, 0, 0, 0.508);
+  padding: 10px;
+}
