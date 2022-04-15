@@ -47,7 +47,7 @@
           <img src="./img/image1.png" alt="yup" width="200px">
         </div>
         <div class="item2">
-          <p>senku</p>
+          <p>Senku</p>
           <img src="./img/img2.jpg" alt="feefe" width="200px">
         </div>
         <div class="item3">
