@@ -17,7 +17,7 @@ include('.././bdd.php');
 <body>
     <header>
         <div class="topnav">
-            <a href="../listing.php">Retour a la liste</a>
+            <a href="../Crud/crud.php">Retour a la liste</a>
 
         </div>
     </header>
@@ -31,11 +31,11 @@ include('.././bdd.php');
                 <p><label for="nom"> Titre :</label><br>
                     <input type="texte" name="Titre" id="">
                 </p>
-                <p><label for="nom">Contenu :</label><br> <input type="texte" name="contenu" id=""></p>
+                <p><label for="nom">Contenu :</label><br> <textarea class="textcont" name="contenu" type="textarea" placeholder="" value="" cols="40" rows="10"></textarea></p>
                 <p><label for="nom"> vues :</label><br> <input type="texte" name="vues" id=""></p>
                 <p><label for="nom"> auteur:</label><br> <input type="texte" name="auteur"></p>
-                <p><label for="nom"> images :</label><br> <input type="texte" name="images" id=""></p>
-                <p><label for="nom"> avatar :</label><br> <input type="texte" name="avatar" id=""></p>
+                <p><label for="nom"> images :</label><br> <input type="file" name="images" id=""></p>
+                <p><label for="nom"> avatar :</label><br> <input type="file" name="avatar" id=""></p>
                 <p><label for="nom"> Rôle :</label><br> <input type="texte" name="role" id=""></p>
 
                 <p><input type="submit" value="Ajouter cet article"></p>
@@ -49,7 +49,8 @@ include('.././bdd.php');
 
         // $requete = "INSERT INTO `article`(`Titre`, `contenu`, `vues`, `pseudo` , `images` , `avatar` , `role`,`date_time`) VALUES (NULL, '" . $_POST['Titre'] . "','" . $contenu . "','" . $_POST['vues'] . "','" . $_POST['pseudo'] . ",'" . $_POST['images'] . "','" . $_POST['avatar'] . "','" . $_POST['role'] . "'";
 
-        $requete = "INSERT INTO `article`(`Titre`, `contenu`, `vues`,`auteur`,`images`,`avatar`, `role`, `date_time`) VALUES ('" . $_POST['Titre'] . "','" . $_POST['contenu']  . "','" . $_POST['vues'] . "','" . $_POST['auteur'] . "','" . $_POST['images'] . "','" . $_POST['avatar'] . "','" . $_POST['role'] . "', NOW() )";
+        $requete = "INSERT INTO `article`(`Titre`, `contenu`, `vues`,`auteur`,`images`,`avatar`, `role`, `date_time`) VALUES 
+        ('" . $_POST['Titre'] . "','" . $_POST['contenu']  . "','" . $_POST['vues'] . "','" . $_POST['auteur'] . "','../img" . $_POST['images'] . "','../img" . $_POST['avatar'] . "','" . $_POST['role'] . "', NOW() )";
         $resultat = $bdd->query($requete);
         if ($resultat) {
             echo "<span>L'article a bien étè ajouter</span>";
@@ -67,11 +68,11 @@ include('.././bdd.php');
             <form class="myform" action="./creation.php" method="POST">
 
                 <p><label for="nom"> Titre :</label> <br> <input type="texte" name="Titre" id=""></p>
-                <p><label for="nom">Contenu :</label> <br> <input type="texte" name="contenu" id="" style=></p>
+                <p><label for="nom">Contenu :</label> <br><textarea class="textcont" name="contenu" type="textarea" placeholder="" value="" cols="40" rows="10"></textarea></p>
                 <p><label for="nom"> vues :</label> <br> <input type="texte" name="vues" id=""></p>
                 <p><label for="nom"> auteur:</label> <br> <input type="texte" name="auteur"></p>
-                <p><label for="nom"> images :</label> <br> <input type="texte" name="images" id=""></p>
-                <p><label for="nom"> avatar :</label> <br> <input type="texte" name="avatar" id=""></p>
+                <p><label for="nom"> images :</label> <br> <input type="file" name="images" id=""></p>
+                <p><label for="nom"> avatar :</label> <br> <input type="file" name="avatar" id=""></p>
                 <p><label for="nom"> Rôle :</label> <br> <input type="texte" name="role" id=""></p>
 
                 <p><input type="submit" value="Ajouter cet article"></p>
