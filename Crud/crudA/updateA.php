@@ -1,10 +1,10 @@
-<?php require 'database.php';
+<?php require 'databaseA.php';
 $id = null;
 if (!empty($_GET['id'])) {
     $id = $_REQUEST['id'];
 }
 if (null == $id) {
-    header("Location: crud.php");
+    header("Location: crudA.php");
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) { // on initialise nos erreurs
     $titreError = null;
@@ -13,10 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) { // on initialise n
     $image_postError = null;
     $contenu_postError = null;
 
-    $titre = $_POST['Titre'];
-    $photo_avatar = "./img/" .$_POST['avatar'];
-    $image_post = "./img/" . $_POST['images'];
-    $contenu_post =  $_POST['contenu'];
+    $titre = $_POST['pseudo'];
+    $photo_avatar = $_POST['nom'];
+    $image_post = $_POST['prenom'];
+
 
     $valid = true;
     if (empty($titre)) {
@@ -41,24 +41,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) { // on initialise n
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "UPDATE article SET Titre = ?, avatar = ?, images = ?, contenu = ? WHERE id = ?";
+        $sql = "UPDATE auteur SET pseudo = ?, nom = ?, prenom = ? WHERE id = ?";
         $q = $pdo->prepare($sql);
-        $q->execute(array($titre, $photo_avatar, $image_post, $contenu_post, $id));
+        $q->execute(array($titre, $photo_avatar, $image_post,  $id));
         Database::disconnect();
-        header("Location: crud.php");
+        header("Location: crudA.php");
     }
 } else {
 
     $pdo = Database::connect();
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "SELECT * FROM article where id = ?";
+    $sql = "SELECT * FROM auteur where id = ?";
     $q = $pdo->prepare($sql);
     $q->execute(array($id));
     $data = $q->fetch(PDO::FETCH_ASSOC);
-    $titre = $data['Titre'];
-    $photo_avatar = $data['avatar'];
-    $image_post = $data['images'];
-    $contenu_post = $data['contenu'];
+    $titre = $data['pseudo'];
+    $photo_avatar = $data['nom'];
+    $image_post = $data['prenom'];
+    
     Database::disconnect();
 }
 
@@ -77,18 +77,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) { // on initialise n
 <body>
 
 
-<div>
-            <h3 class="titre" >Modifier un Post</h3>
-        </div>
+    <div>
+        <h3 class="titre">Renommer auteur</h3>
+    </div>
     <div class="container">
 
-        <form method="post" action="update.php?id=<?php echo $id; ?>">
+        <form method="post" action="crudA.php?id=<?php echo $id; ?>">
 
             <div class="control-group <?php echo !empty($titreError) ? 'error' : ''; ?>">
                 <label class="control-label">Name</label>
 
                 <div class="controls">
-                    <input name="Titre" type="text" placeholder="" value="<?php echo !empty($titre) ? $titre : ''; ?>">
+                    <input name="pseudo" type="text" placeholder="" value="<?php echo !empty($titre) ? $titre : ''; ?>">
                     <?php if (!empty($titreError)) : ?>
                         <span class="help-inline"><?php echo $titreError; ?></span>
                     <?php endif; ?>
@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) { // on initialise n
                 <label class="control-label">Lien Avatar:</label>
 
                 <div class="controls">
-                    <input name="avatar" type="file" placeholder="" value="<?php echo !empty($photo_avatar) ? $photo_avatar : ''; ?>">
+                    <input name="nom" type="text" placeholder="" value="<?php echo !empty($photo_avatar) ? $photo_avatar : ''; ?>">
                     <?php if (!empty($photo_avatarError)) : ?>
                         <span class="help-inline"><?php echo $photo_avatarError; ?></span>
                     <?php endif; ?>
@@ -112,19 +112,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) { // on initialise n
             </div>
             <p>
 
-            <div class="control-group <?php echo !empty($contenu_postError) ? 'error' : ''; ?>">
-                <label class="control-label">Contenu du post:</label>
-
-                <div class="controls">
-                    <textarea class="textcont" name="contenu" type="textarea" placeholder="" value="<?php echo !empty($contenu_post) ? $contenu_post : ''; ?>"cols="40" rows="10"></textarea></>
-                    <?php if (!empty($contenu_postError)) : ?>
-                        <span class="help-inline"><?php echo $contenu_postError; ?></span>
-                    <?php endif; ?>
-                </div>
-                <p>
-
-            </div>
-            <p>
 
 
             <div class="control-group <?php echo !empty($image_postError) ? 'error' : ''; ?>">
@@ -132,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) { // on initialise n
 
 
                 <div class="controls">
-                    <input name="images" type="file" placeholder="" value="<?php echo !empty($image_post) ? $image_post : ''; ?>">
+                    <input name="prenom" type="text" placeholder="" value="<?php echo !empty($image_post) ? $image_post : ''; ?>">
                     <?php if (!empty($image_postError)) : ?>
                         <span class="help-inline"><?php echo $image_postError; ?></span>
                     <?php endif; ?>
@@ -145,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) { // on initialise n
 
             <div class="form-actions">
                 <input type="submit" class="btn btn-success" name="submit" value="submit">
-                <a class="btn" href="crud.php">Retour</a>
+                <a class="btn" href="crudA.php">Retour</a>
             </div>
             <p>
 

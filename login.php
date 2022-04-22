@@ -65,7 +65,7 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST' && isset($_POST['user'])) {
          
             for ($i=0; $i<count( $article) ; $i++){
 
-                if (($article[$i]["Username"] == $loginsaisi) AND ($article[$i]["Password"] == $mdpsaisi) ) {
+                if (($article[$i]["user_name"] == $loginsaisi) AND ($article[$i]["password"] == $mdpsaisi) ) {
 
                     $_SESSION['userid'] = $article[$i]["id"] ;
                     

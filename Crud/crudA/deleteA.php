@@ -2,9 +2,9 @@
 /* confirmer */
 if(isset($_POST["id"]) && !empty($_POST["id"])){
     /* Inclure le fichier config */
-    require_once "crud.php";
+    require_once "crudA.php";
     
-    $sql = "DELETE FROM article WHERE id = ?";
+    $sql = "DELETE FROM auteur WHERE id = ?";
     
     if($stmt = mysqli_prepare($link, $sql)){
         mysqli_stmt_bind_param($stmt, "i", $param_id);
@@ -13,7 +13,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         
         if(mysqli_stmt_execute($stmt)){
             /* supprimé, retourne */
-            header("location: crud.php");
+            header("location: index.php");
             exit();
         } else{
             echo "Oops! une erreur est survenue.";
@@ -26,7 +26,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 } else{
     /* verifier si paramettre id exite */
     if(empty(trim($_GET["id"]))){
-        header("location: crud.php");
+        header("location: error.php");
         exit();
     }
 }
@@ -51,11 +51,11 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="mt-5 mb-3">Supprimer l'enregistremnt</h2>
+                    <h2 class="mt-5 mb-3">Supprimer auteur</h2>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger">
                             <input type="hidden" name="id" value="<?php echo trim($_GET["id"]); ?>"/>
-                            <p>Etes vous sûr de vouloir supprimer cet étudiant ?</p>
+                            <p>Etes vous sûr de vouloir supprimer cet auteur ?</p>
                             <p>
                                 <input type="submit" value="OUI" class="btn btn-danger">
                                 <a href="index.php" class="btn btn-secondary">NON</a>

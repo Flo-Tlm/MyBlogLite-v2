@@ -2,9 +2,9 @@
 /* confirmer */
 if(isset($_POST["id"]) && !empty($_POST["id"])){
     /* Inclure le fichier config */
-    require_once "crud.php";
+    require_once "crudCat.php";
     
-    $sql = "DELETE FROM article WHERE id = ?";
+    $sql = "DELETE FROM catégorie WHERE id = ?";
     
     if($stmt = mysqli_prepare($link, $sql)){
         mysqli_stmt_bind_param($stmt, "i", $param_id);
@@ -13,7 +13,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         
         if(mysqli_stmt_execute($stmt)){
             /* supprimé, retourne */
-            header("location: crud.php");
+            header("location: index.php");
             exit();
         } else{
             echo "Oops! une erreur est survenue.";
@@ -26,7 +26,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 } else{
     /* verifier si paramettre id exite */
     if(empty(trim($_GET["id"]))){
-        header("location: crud.php");
+        header("location: error.php");
         exit();
     }
 }
